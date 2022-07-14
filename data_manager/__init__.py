@@ -48,6 +48,10 @@ class DataManager:
         for data_file in data_files:
             with open(join(base_path, data_file), newline='') as data_file:
                 year = int(re.search(r'\d{4}', data_file.name).group())
+
+                if year == 2000:
+                    pass
+
                 if year not in self.years.keys():
                     self.years[year] = Year(year)
 
@@ -88,7 +92,9 @@ class DataManager:
                         print("Ignoring Data Row: Invalid Data",
                               sys.exc_info()[0])
 
-                year.addMonth(month)
+                # Add month if it has data for at least one day
+                if len(month.days) > 0:
+                    year.addMonth(month)
 
     def printData(self):
         for year in self.years:
