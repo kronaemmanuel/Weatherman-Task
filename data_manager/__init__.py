@@ -67,12 +67,19 @@ class DataManager:
 
                 for row in month_data:
                     try:
+                        if any(row[key] in (None, '') for key in [0, 1, 3, 7, 9]):
+                            raise ValueError
+
                         day_number = int(
                             re.search(r'\d{1,2}$', row[0]).group())
                         max_temperature = int(row[1])
                         min_temperature = int(row[3])
                         max_humidity = int(row[7])
                         min_humidity = int(row[9])
+
+                        if day_number not in range(1, 31):
+                            raise ValueError
+
                         day = Day(day_number, max_temperature,
                                   min_temperature, max_humidity, min_humidity)
 
@@ -89,3 +96,9 @@ class DataManager:
             for month in year.months:
                 for day in month.days:
                     print(year.year, month.month, day.day)
+
+    def sortedYears(self):
+        return sorted(self.years)
+
+    def getYear(self, year_number: int) -> Year:
+        return self.years[year_number]
