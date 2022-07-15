@@ -1,4 +1,5 @@
 from data_manager.Day import Day
+from data_manager.Year import Year
 from reports.report import Report
 from data_manager import DataManager
 
@@ -13,7 +14,7 @@ class HottestDayReport(Report):
         sorted_years = self.data_store.sortedYears()
 
         for year in sorted_years:
-            year = self.data_store.years[year]
-            hottest_day: Day = year.hottest_day()
+            year: Year = self.data_store.years[year]
+            hottest_day: Day = year.max_temperature_day()
             print("{:<10} {:<12} {:<12}".format(
                 year.year, hottest_day.get_date(), hottest_day.max_temperature))

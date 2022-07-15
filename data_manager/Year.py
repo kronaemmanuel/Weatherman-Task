@@ -10,21 +10,14 @@ class Year:
     def addMonth(self, month: Month):
         self.months.append(month)
 
-    def max_temperature(self) -> int:
-        return max([month.max_temperature() for month in self.months])
+    def max_temperature_day(self) -> Day:
+        return max([month.max_temperature_day() for month in self.months], key=lambda day: day.max_temperature)
 
-    def min_temperature(self) -> int:
-        return min([month.min_temperature() for month in self.months])
+    def min_temperature_day(self) -> Day:
+        return min([month.min_temperature_day() for month in self.months], key=lambda day: day.min_temperature)
 
-    def max_humidity(self) -> int:
-        return max([month.max_humidity() for month in self.months])
+    def max_humidity_day(self) -> Day:
+        return max([month.max_humidity_day() for month in self.months], key=lambda day: day.max_humidity)
 
-    def min_humidity(self) -> int:
-        return min([month.min_humidity() for month in self.months])
-
-    def hottest_day(self) -> Day:
-        monthly_hottest_days = []
-        for month in self.months:
-            monthly_hottest_days.append(month.hottest_day())
-
-        return max(monthly_hottest_days, key=lambda day: day.max_temperature)
+    def min_humidity_day(self) -> Day:
+        return min([month.min_humidity_day() for month in self.months], key=lambda day: day.min_humidity)
