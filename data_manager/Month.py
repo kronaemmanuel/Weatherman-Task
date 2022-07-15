@@ -10,13 +10,13 @@ class Month:
         self.days.append(day)
 
     def max_temperature(self) -> int:
-        daily_max_temperatures: int = []
-        for day in self.days:
-            daily_max_temperatures.append(day.max_temperature)
+        return max([day.max_temperature for day in self.days])
 
-        try:
-            max_temp = max(daily_max_temperatures)
-            return max_temp
-        except:
-            print("Max temperature not found due to invalid data")
-            return 0
+    def min_temperature(self) -> int:
+        return min([day.min_temperature for day in self.days])
+
+    def max_humidity(self) -> int:
+        return max([day.max_humidity for day in self.days])
+
+    def min_humidity(self) -> int:
+        return min([day.min_humidity for day in self.days])

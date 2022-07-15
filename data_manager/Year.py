@@ -10,17 +10,13 @@ class Year:
         self.months.append(month)
 
     def max_temperature(self):
-        monthly_max_temperatures: list[int] = []
-        for month in self.months:
-            monthly_max_temperatures.append(month.max_temperature())
-
-        return max(monthly_max_temperatures)
+        return max([month.max_temperature() for month in self.months])
 
     def min_temperature(self):
-        return 2
+        return min([month.min_temperature() for month in self.months])
 
     def max_humidity(self):
-        return 94
+        return max([month.max_humidity() for month in self.months])
 
     def min_humidity(self):
-        return 20
+        return min([month.min_humidity() for month in self.months])
