@@ -20,3 +20,6 @@ class Month:
 
     def min_humidity(self) -> int:
         return min([day.min_humidity for day in self.days])
+
+    def hottest_day(self) -> int:
+        return max(self.days, key=lambda day: day.max_temperature)

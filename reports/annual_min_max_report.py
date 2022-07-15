@@ -9,6 +9,7 @@ class AnnualMinMaxReport(Report):
     def printReport(self):
         print("{:<10} {:<12} {:<12} {:<15} {:<12}".format(
             'Year', 'MAX Temp', 'MIN Temp', 'MAX Humidity', 'MIN Humidity'))
+        print("-----------------------------------------------------------------")
         sortedYears = self.data_store.sortedYears()
 
         for year in sortedYears:

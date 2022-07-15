@@ -47,15 +47,12 @@ class DataManager:
 
         for data_file in data_files:
             with open(join(base_path, data_file), newline='') as data_file:
-                year = int(re.search(r'\d{4}', data_file.name).group())
+                year_number = int(re.search(r'\d{4}', data_file.name).group())
 
-                if year == 2000:
-                    pass
+                if year_number not in self.years.keys():
+                    self.years[year_number] = Year(year_number)
 
-                if year not in self.years.keys():
-                    self.years[year] = Year(year)
-
-                year = self.years[year]
+                year = self.years[year_number]
 
                 month_name = data_file.name[-7:-4]
                 month_number = MONTHS.index(month_name) + 1
@@ -84,7 +81,7 @@ class DataManager:
                         if day_number not in range(1, 31):
                             raise ValueError
 
-                        day = Day(day_number, max_temperature,
+                        day = Day(day_number, month_number, year_number, max_temperature,
                                   min_temperature, max_humidity, min_humidity)
 
                         month.addDay(day)
