@@ -1,5 +1,5 @@
 from tkinter import W
-from data_manager.Day import Day
+from data_manager.day import Day
 
 
 class Month:

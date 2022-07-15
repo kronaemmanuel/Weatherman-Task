@@ -1,5 +1,5 @@
-from data_manager.Day import Day
-from data_manager.Month import Month
+from data_manager.day import Day
+from data_manager.month import Month
 
 
 class Year:

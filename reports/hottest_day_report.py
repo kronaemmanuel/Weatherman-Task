@@ -1,7 +1,7 @@
-from data_manager.Day import Day
-from data_manager.Year import Year
+from data_manager.day import Day
+from data_manager.year import Year
 from reports.report import Report
-from data_manager import DataManager
+from data_manager.data_manager import DataManager
 
 
 class HottestDayReport(Report):

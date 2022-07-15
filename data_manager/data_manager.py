@@ -26,9 +26,9 @@ import sys
 from os import listdir
 from os.path import isfile, join
 import re
-from data_manager.Year import Year
-from data_manager.Month import Month
-from data_manager.Day import Day
+from data_manager.year import Year
+from data_manager.month import Month
+from data_manager.day import Day
 import csv
 
 
