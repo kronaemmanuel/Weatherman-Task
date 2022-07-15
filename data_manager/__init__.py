@@ -37,16 +37,18 @@ MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 
 
 class DataManager:
-    def __init__(self) -> None:
+    def __init__(self, base_path) -> None:
         self.years = {}
+        self.base_path = base_path
+        try:
+            self.data_folder = [f for f in listdir(
+                self.base_path) if isfile(join(self.base_path, f))]
+        except:
+            raise ValueError
 
-    def import_data(self, base_path: str):
-        # get list of files from given directory
-        data_files = [f for f in listdir(
-            base_path) if isfile(join(base_path, f))]
-
-        for data_file in data_files:
-            with open(join(base_path, data_file), newline='') as data_file:
+    def import_data(self):
+        for data_file in self.data_folder:
+            with open(join(self.base_path, data_file), newline='') as data_file:
                 year_number = int(re.search(r'\d{4}', data_file.name).group())
 
                 if year_number not in self.years.keys():
@@ -86,8 +88,9 @@ class DataManager:
 
                         month.addDay(day)
                     except:
-                        print("Ignoring Data Row: Invalid Data",
-                              sys.exc_info()[0])
+                        pass
+                        # print("Ignoring Data Row: Invalid Data",
+                        #       sys.exc_info()[0])
 
                 # Add month if it has data for at least one day
                 if len(month.days) > 0:

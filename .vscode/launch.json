@@ -10,7 +10,11 @@
             "request": "launch",
             "program": "__init__.py",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "args": [
+                "./data",
+                "1"
+            ]
         },
     ]
 }
