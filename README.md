@@ -1,12 +1,20 @@
-Here is the next assignment. Only the standard python library is allowed.
+# Weatherman
 
-**Weather Man**
+Weatherman is a command line application which creates reports from historical weather data `csv` files.
 
-Attached file contains weather data for Lahore from 1996 to 2011. Your task is to write an application that generates reports on the given data.
+## Usage
+**Required:** Python3
 
-1. Annual Max/Min Temp: Print a table as follows
+```
+python weatherman.py [report_number] [data_directory_path]
+```
+There are two types of reports that can be generated:
 
-```python
+1. Annual min/max temperature:
+```
+python weatherman.py 1 ./data
+
+Output:
 Year        MAX Temp        MIN Temp        MAX Humidity        MIN Humidity
 --------------------------------------------------------------------------
 1996        40              2               94                  20
@@ -14,9 +22,11 @@ Year        MAX Temp        MIN Temp        MAX Humidity        MIN Humidity
 1998        40              3               80                  30
 ```
 
-2. Hottest days of each year
+2. Hottest day of each year:
+```
+python weatherman.py 2 ./data
 
-```python
+Output:
 Year        Date          Temp
 ------------------------------
 2006        21/6/2006     45
@@ -25,17 +35,27 @@ Year        Date          Temp
 2009        21/6/2009     43
 ```
 
-Program should take two parameters: report number and weather data directory. If no parameter is provided print the application usage info. According to above reports a usage output could be like
+### Debug Mode
+If you want to print debug information, you can change `debug_mode` in `constants.py` file to `True`
 
-```python
-Usage: weatherman [report#] [data_dir]
+## Directory Structure
 
-[Report #]
-1 for Annual Max/Min Temperature
-2 for Hottest day of each year
-
-[data_dir]
-Directory containing weather data files
+Data directory must be of the following structure and follow the same naming convention:
 ```
-
-Let me know if you have any questions. Once the assignment is done please push it to github and add me as a reviewer
+directory-name:
+├── lahore_weather_YEAR_MONTH.txt
+├── lahore_weather_2000_Jan.txt
+├── ...
+└── lahore_weather_2011_May.txt
+```
+- Sub-directories are not supported
+- YEAR is a 4 digit string
+- MONTH is a 3 character ISO string
+- File extension may be .txt or .csv but it will be read as a csv file
+- First line of the file is empty
+- Second line contains the header
+- Indexes(zero-base) of data in the CSV file are as follows:
+    - Max Temperature: 1
+    - Min Temperature: 3
+    - Max Humidity: 7
+    - Min Humidity: 9

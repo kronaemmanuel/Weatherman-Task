@@ -1,26 +1,22 @@
-"""
-Task Details: https://mixolydian-bugle-21c.notion.site/Weather-Report-83c9f514a3974e5986aea2568f6f0c15
-"""
-
+import argparse
 import os
 import sys
-import argparse
+
+import constants
 from data_manager.data_manager import DataManager
 from reports.annual_min_max_report import AnnualMinMaxReport
 from reports.hottest_day_report import HottestDayReport
 from reports.report import Report
 
-
 parser = argparse.ArgumentParser(prog='weatherman',
-                                 description='Generate weatherman reports on given csv data folder', formatter_class=argparse.RawTextHelpFormatter)
+                                 description=constants.parser_description, formatter_class=argparse.RawTextHelpFormatter)
 
-REPORT_NUMBER_HELP_TEXT = '1 for Annual Max/Min Temperature\n2 for Hottest day of each year'
 
 parser.add_argument('ReportNumber', metavar='[report#]',
-                    type=int, help=REPORT_NUMBER_HELP_TEXT)
+                    type=int, help=constants.report_number_help_text)
 
 parser.add_argument('Path', metavar='[data_dir]', type=str,
-                    help='Directory containing weather data files')
+                    help=constants.data_directory_help_text)
 
 args = parser.parse_args()
 

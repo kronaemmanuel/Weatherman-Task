@@ -1,36 +1,14 @@
-"""
-Import data from given directory
-
-Directory format must be as follows:
-directory-name:
-├── lahore_weather_YEAR_MONTH.txt
-├── lahore_weather_2000_Jan.txt
-├── ...
-└── lahore_weather_2011_May.txt
-
-- Sub-directories are not supported
-- YEAR is a 4 digit string
-- MONTH is a 3 character ISO string
-- File extension may be .txt or .csv but it will be read as a csv file
-- First line of the file is empty
-- Second line contains the header
-- Indexes(zero-base) of data in the CSV file are as follows:
-    - Max Temperature: 1
-    - Min Temperature: 3
-    - Max Humidity: 7
-    - Min Humidity: 9
-
-Output will be a list of Year objects
-"""
+import csv
+import re
 import sys
 from os import listdir
 from os.path import isfile, join
-import re
-from data_manager.year import Year
-from data_manager.month import Month
-from data_manager.day import Day
-import csv
 
+import constants
+
+from data_manager.day import Day
+from data_manager.month import Month
+from data_manager.year import Year
 
 MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -88,9 +66,9 @@ class DataManager:
 
                         month.addDay(day)
                     except:
-                        pass
-                        # print("Ignoring Data Row: Invalid Data",
-                        #       sys.exc_info()[0])
+                        if constants.debug_mode:
+                            print("Ignoring Data Row: Invalid Data",
+                                  sys.exc_info()[0])
 
                 # Add month if it has data for at least one day
                 if len(month.days) > 0:

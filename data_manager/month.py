@@ -1,4 +1,3 @@
-from tkinter import W
 from data_manager.day import Day
 
 
